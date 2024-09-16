@@ -95,21 +95,21 @@ for column in numeric_columns:
 
 
 #Descriptive satatistics
-# Select the variables of interest and the Thalassemia outcome
+# Select the variables of interest and the outcome churn
 variables = ['Age','Subscription_Length_Months','Monthly_Bill','Total_Usage_GB']
 outcome = 'Churn'
 
 # Create a subset of the data with the selected variables and outcome
 subset = data[variables + [outcome]].copy()
 
-# Convert the Thalassemia outcome to categorical type
+# Convert the outcome to categorical type
 subset[outcome] = subset[outcome].astype('category')
 
 # Descriptive statistics
 statistics = subset.groupby(outcome).describe().transpose()
 print("Descriptive Statistics:\n", statistics)
 
-# Box plots to visualize the distribution of variables based on the Thalassemia outcome
+# Box plots to visualize the distribution of variables based on the outcome
 for variable in variables:
     sns.boxplot(x=outcome, y=variable, data=subset)
     sns.stripplot(x=outcome, y=variable, data=subset, color=".3", size=4)
